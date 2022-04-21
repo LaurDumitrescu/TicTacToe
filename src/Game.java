@@ -136,13 +136,27 @@ public class Game extends JFrame implements ActionListener {
 
     }
 
+    private void enableButtons(){
+        for(JButton b: buttons){
+            b.setEnabled(true);
+        }
+    }
+
+    private void disableButtons(){
+        for(JButton b: buttons){
+            b.setEnabled(false);
+        }
+    }
+
     private void wonOrDraw() {
         if(won){
             newGame = new JDialog(this, "Game has been won by " + turn);
+
         }
         else{
             newGame = new JDialog(this, "DRAW");
         }
+        disableButtons();
 
         newGame.setLayout(new FlowLayout());
 
@@ -174,11 +188,10 @@ public class Game extends JFrame implements ActionListener {
 
         for(JButton btn : buttons){
             btn.setText(String.valueOf(++counter));
-            btn.setEnabled(true);
             btn.setBackground(null);
             btn.setForeground(null);
         }
-
+        enableButtons();
         board = new String[9];
         won = false;
         counter = 0;
